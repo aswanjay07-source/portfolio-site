@@ -2,11 +2,125 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>A's Bio</title>
-   
-
+  <link rel="stylesheet" href="style.css">
   <style>
-    <link rel="stylesheet" href="style.css">
+    .project-img {
+  width: 100%;
+  max-width: 600px;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+    .resume-btn {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #007acc;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.resume-btn:hover {
+  background-color: #005f99;
+}
+    @media (max-width: 768px) {
+  body {
+    padding: 20px;
+  }
+
+  .container {
+    padding: 20px;
+  }
+
+  img {
+    width: 100px;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  #about h2,
+  #projects h2,
+  section h2 {
+    font-size: 1.5rem;
+  }
+
+  #about p,
+  .project p,
+  section p {
+    font-size: 1rem;
+  }
+
+  #theme-toggle {
+    width: 100%;
+    font-size: 1rem;
+  }
+}
+    body.dark-mode {
+  background-color: #1e1e1e;
+  color: #f4f4f4;
+}
+
+body.dark-mode .container {
+  background-color: #2c2c2c;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode a {
+  color: #66ccff;
+}
+
+#theme-toggle {
+  margin-bottom: 20px;
+  padding: 10px 20px;
+  background-color: #007acc;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#theme-toggle:hover {
+  background-color: #005f99;
+}
+    #projects {
+  margin-top: 2rem;
+}
+
+#projects h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #007acc;
+}
+
+.project {
+  background-color: #fdfdfd;
+  border: 1px solid #ddd;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+}
+
+.project h3 {
+  margin-top: 0;
+  color: #333;
+}
+
+.project a {
+  color: #007acc;
+  text-decoration: none;
+  margin-right: 10px;
+}
+
+.project a:hover {
+  text-decoration: underline;
+}
     body {
       font-family: Arial, sans-serif;
       background-color: #f4f4f4;
@@ -14,7 +128,6 @@
       padding: 40px;
     }
     .container {
-        
       max-width: 700px;
       margin: auto;
       background: white;
@@ -25,23 +138,130 @@
     h1 {
       color: #007acc;
     }
+    section {
+      margin-top: 2rem;
+    }
+    #about {
+      background-color: #f9f9f9;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    #about h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: #333;
+    }
+    #about p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #555;
+    }
+    section {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease-out;
+}
+
+section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+    footer {
+  text-align: center;
+  margin-top: 3rem;
+  padding: 1rem;
+  background-color: #007acc;
+  color: white;
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
   </style>
 </head>
 <body>
   <div class="container">
     <img src="images/Image 2025-10-15 at 04.40.51_58df0656.jpg" alt="A's photo" style="width:150px; border-radius:50%;">
-    <h1>Hello, I'm Aswan </h1>
-    <p>I'm currently focused on mastering HTML, CSS, and JavaScript, aiming to build interactive and responsive websites.</p>
+    <h1>Hello, I'm Aswan</h1>
+    <button id="theme-toggle">Toggle Dark/Light Mode</button>
 
-    <p>I'm a curious and ambitious learner from Kenya, diving deep into the world of coding and tech. I love exploring how technology can solve real-world problems and empower communities.</p>
-    <p>Currently learning HTML, CSS, and JavaScript — one line of code at a time.</p>
-    <p>When I'm not coding, you'll find me exploring football, AI tools, and social trends.</p>
-    <p>Connect with me:</p>
+    <section id="about">
+      <h2>About Me</h2>
+      <p>
+        Hi, I'm <strong>Aswan Jay</strong> — an aspiring web developer and programmer based in Nairobi, Kenya. I specialize in building responsive websites and integrating smart features like dark/light mode toggles and GitHub API automation. With a solid foundation in Python, JavaScript, and C++, I enjoy turning ideas into clean, functional code.
+      </p>
+      <p>
+        I'm currently focused on creating a professional portfolio that showcases my growth, creativity, and technical skills. Whether it's front-end design or back-end logic, I love solving problems and learning new tools that push my capabilities further.
+      </p>
+    </section>
+   
+    <section>
+      <h2>Learning Journey</h2>
+      <p>
+        I'm currently mastering HTML, CSS, and JavaScript — one line of code at a time — with the goal of building interactive, responsive websites that reflect both creativity and functionality.
+      </p>
+    </section>
+
+    <section>
+      <h2>Interests</h2>
+      <p>
+        I'm a curious and ambitious learner from Kenya, diving deep into the world of coding and tech. I love exploring how technology can solve real-world problems and empower communities.
+      </p>
+      <p>
+        When I'm not coding, you'll find me exploring football, AI tools, and social trends.
+      </p>
+    </section>
+
+    <section>
+      <h2>Connect with Me</h2>
+      <ul>
+        <li><a href="https://github.com/aswanjay07-source/-a--tech--journey.git" target="_blank">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/jay-aswan-937113395" target="_blank">LinkedIn</a></li>
+        <li><a href="docs/Aswan-Jay-Resume.pdf" download class="resume-btn">Download My Resume</a></li>
+      </ul></section>
+      <section id="projects">
+  <h2>Projects</h2>
+
+  <div class="project">
+    <h3>My Portfolio Website</h3>
+    <p>A responsive personal site built with HTML, CSS, and JavaScript. Includes dark/light mode toggle and GitHub integration.</p>
+    <a href="https://aswanjay07-source.github.io/portfolio-site/" target="_blank">View Live</a> |
+    <a href="https://github.com/aswanjay07-source/portfolio-site" target="_blank">GitHub Repo</a>
     
-<ul>
-  <li><a href="https://github.com/aswanjay07-source/-a--tech--journey.git" target="_blank">GitHub</a></li>
-  <li><a href="https://www.linkedin.com/in/jay-aswan-937113395" target="_blank">LinkedIn</a></li>
-
   </div>
+
+  <div class="project">
+    <h3>A Tech Journey Blog</h3>
+    <p>A simple blog layout where I share my learning journey, coding tips, and reflections as I grow in tech.</p>
+    <a href="https://github.com/aswanjay07-source/-a--tech--journey.git" target="_blank">GitHub Repo</a>
+  </div>
+</section>
+    </section>
+  </div>
+  <script>
+  const toggleButton = document.getElementById('theme-toggle');
+  toggleButton.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+  });
+</script>
+<footer>
+  <p>&copy; 2025 Aswan Jay. Built with 💻 and passion.</p>
+</footer>
+<script>
+  const sections = document.querySelectorAll("section");
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+      }
+    });
+  }, {
+    threshold: 0.1
+  });
+
+  sections.forEach(section => {
+    observer.observe(section);
+  });
+</script>
 </body>
 </html>
