@@ -4,8 +4,27 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>A's Bio</title>
+  <link rel="icon" href="images/favicon.png" type="image/png">
   <link rel="stylesheet" href="style.css">
   <style>
+    nav {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+nav a {
+  margin: 0 15px;
+  text-decoration: none;
+  color: #007acc;
+  font-weight: bold;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+    html {
+  scroll-behavior: smooth;
+}
     .project-img {
   width: 100%;
   max-width: 600px;
@@ -179,6 +198,11 @@ section.visible {
   </style>
 </head>
 <body>
+  <nav>
+  <a href="#about">About</a>
+  <a href="#projects">Projects</a>
+  <a href="#connect">Connect</a>
+</nav>
   <div class="container">
     <img src="images/Image 2025-10-15 at 04.40.51_58df0656.jpg" alt="A's photo" style="width:150px; border-radius:50%;">
     <h1>Hello, I'm Aswan</h1>
@@ -211,7 +235,7 @@ section.visible {
       </p>
     </section>
 
-    <section>
+    <section id="connect">
       <h2>Connect with Me</h2>
       <ul>
         <li><a href="https://github.com/aswanjay07-source/-a--tech--journey.git" target="_blank">GitHub</a></li>
@@ -234,34 +258,15 @@ section.visible {
     <p>A simple blog layout where I share my learning journey, coding tips, and reflections as I grow in tech.</p>
     <a href="https://github.com/aswanjay07-source/-a--tech--journey.git" target="_blank">GitHub Repo</a>
   </div>
-</section>
+
     </section>
-  </div>
-  <script>
-  const toggleButton = document.getElementById('theme-toggle');
-  toggleButton.addEventListener('click', () => {
-    document.body.classList.toggle('dark-mode');
-  });
-</script>
+  </div> 
 <footer>
-  <p>&copy; 2025 Aswan Jay. Built with 💻 and passion.</p>
+  <p>&copy; <span id="year"></span> Aswan Jay. Built with 💻 and passion.</p>
+  <p>
+    <a href="#top" style="color:white; text-decoration:underline;">Back to Top</a>
+  </p>
 </footer>
-<script>
-  const sections = document.querySelectorAll("section");
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-      }
-    });
-  }, {
-    threshold: 0.1
-  });
-
-  sections.forEach(section => {
-    observer.observe(section);
-  });
-</script>
+<script src="script.js"></script>
 </body>
 </html>
