@@ -1,3 +1,8 @@
 [user]
-	name = Aswan Jay
+	name = aswanjay07-source
 	email = aswanjay07@gmail.com
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
