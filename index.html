@@ -6,205 +6,22 @@
   <title>A's Bio</title>
   <link rel="icon" href="images/favicon.png" type="image/png">
   <link rel="stylesheet" href="style.css">
-  <style>
-    nav {
-  margin-bottom: 20px;
-  text-align: center;
-}
-
-nav a {
-  margin: 0 15px;
-  text-decoration: none;
-  color: #007acc;
-  font-weight: bold;
-}
-
-nav a:hover {
-  text-decoration: underline;
-}
-    html {
-  scroll-behavior: smooth;
-}
-    .project-img {
-  width: 100%;
-  max-width: 600px;
-  border-radius: 8px;
-  margin-bottom: 1rem;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-}
-    .resume-btn {
-  display: inline-block;
-  margin-top: 10px;
-  padding: 10px 20px;
-  background-color: #007acc;
-  color: white;
-  text-decoration: none;
-  border-radius: 5px;
-  font-weight: bold;
-}
-
-.resume-btn:hover {
-  background-color: #005f99;
-}
-    @media (max-width: 768px) {
-  body {
-    padding: 20px;
-  }
-
-  .container {
-    padding: 20px;
-  }
-
-  img {
-    width: 100px;
-  }
-
-  h1 {
-    font-size: 1.8rem;
-  }
-
-  #about h2,
-  #projects h2,
-  section h2 {
-    font-size: 1.5rem;
-  }
-
-  #about p,
-  .project p,
-  section p {
-    font-size: 1rem;
-  }
-
-  #theme-toggle {
-    width: 100%;
-    font-size: 1rem;
-  }
-}
-    body.dark-mode {
-  background-color: #1e1e1e;
-  color: #f4f4f4;
-}
-
-body.dark-mode .container {
-  background-color: #2c2c2c;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
-}
-
-body.dark-mode a {
-  color: #66ccff;
-}
-
-#theme-toggle {
-  margin-bottom: 20px;
-  padding: 10px 20px;
-  background-color: #007acc;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-#theme-toggle:hover {
-  background-color: #005f99;
-}
-    #projects {
-  margin-top: 2rem;
-}
-
-#projects h2 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  color: #007acc;
-}
-
-.project {
-  background-color: #fdfdfd;
-  border: 1px solid #ddd;
-  padding: 1rem;
-  margin-bottom: 1.5rem;
-  border-radius: 8px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
-}
-
-.project h3 {
-  margin-top: 0;
-  color: #333;
-}
-
-.project a {
-  color: #007acc;
-  text-decoration: none;
-  margin-right: 10px;
-}
-
-.project a:hover {
-  text-decoration: underline;
-}
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
-      color: #333;
-      padding: 40px;
-    }
-    .container {
-      max-width: 700px;
-      margin: auto;
-      background: white;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    h1 {
-      color: #007acc;
-    }
-    section {
-      margin-top: 2rem;
-    }
-    #about {
-      background-color: #f9f9f9;
-      padding: 2rem;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    }
-    #about h2 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-      color: #333;
-    }
-    #about p {
-      font-size: 1.1rem;
-      line-height: 1.6;
-      color: #555;
-    }
-    section {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.6s ease-out;
-}
-
-section.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-    footer {
-  text-align: center;
-  margin-top: 3rem;
-  padding: 1rem;
-  background-color: #007acc;
-  color: white;
-  border-radius: 8px;
-  font-size: 0.9rem;
-}
-  </style>
+  
 </head>
 <body>
   <header>
   <nav>
+    <button id="theme-toggle" aria-label="Toggle dark mode">
+  🌙
+</button>
   <a href="#about">About</a>
   <a href="#projects">Projects</a>
   <a href="#connect">Connect</a>
+  <a href="your-resume.pdf" download class="resume-btn">Download Resume</a>
 </nav>
 </header>
+<h2 style="margin-top: 2rem;">📌 Pinned GitHub Projects</h2>
+<div id="repo-container"></div>
   <div class="container">
     <img src="images/Image 2025-10-15 at 04.40.51_58df0656.jpg" alt="A's photo" style="width:150px; border-radius:50%;">
     <h1>Hello, I'm Aswan</h1>
@@ -219,6 +36,9 @@ section.visible {
         I'm currently focused on creating a professional portfolio that showcases my growth, creativity, and technical skills. Whether it's front-end design or back-end logic, I love solving problems and learning new tools that push my capabilities further.
       </p>
     </section>
+    <section id="pinned-repos">
+  <h2>Pinned Repositories</h2>
+</section>
    
     <section>
       <h2>Learning Journey</h2>
@@ -266,7 +86,7 @@ section.visible {
 </main>
 <section id="contact">
   <h2>Contact Me</h2>
-  <form id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+  <form id="contact-form" action="https://formspree.io/f/xpwolvrj" method="POST">
     <label for="name">Name:</label>
     <input type="text" id="name" name="name" required>
 
@@ -277,6 +97,7 @@ section.visible {
     <textarea id="message" name="message" rows="5" required></textarea>
 
     <button type="submit">Send Message</button>
+    <div id="form-status"></div>
   </form>
 </section>
 <footer>
@@ -286,6 +107,6 @@ section.visible {
   </p>
 
 </footer>
-<script src="script.js"></script>
+<script src="script.js" defer></script>
 </body>
 </html>
