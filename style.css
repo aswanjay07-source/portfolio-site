@@ -235,6 +235,36 @@ section.visible {
   background-color: var(--card-bg, #f9f9f9);
   transition: box-shadow 0.3s ease;
 }
+#filter-bar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.filter-btn {
+  padding: 8px 16px;
+  border: none;
+  background-color: #eee;
+  cursor: pointer;
+}
+
+.repo-card {
+  border: 1px solid #ccc;
+  padding: 16px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.repo-card h3 {
+  margin-top: 0;
+}
+
+.repo-card .tags {
+  margin-top: 8px;
+  font-size: 0.9em;
+  color: #666;
+}
 
 .repo-card:hover {
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);

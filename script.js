@@ -44,37 +44,23 @@ const pinnedReposQuery = `
         primaryLanguage {
           name
         }
+        repositoryTopics(first: 5) {
+          nodes {
+            topic {
+              name
+            }
+          }
+        }
       }
     }
   }
 }
 `;
 
-// 🎯 Fetch and Render Repos
-function fetchPinnedRepos() {
-  fetch('https://api.github.com/graphql', {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${GITHUB_TOKEN}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ query: pinnedReposQuery }),
-  })
-    .then(response => response.json())
-    .then(data => {
-      const repos = data?.data?.viewer?.pinnedItems?.nodes;
-      if (!repos) throw new Error("Unexpected API structure");
-      renderRepos(repos);
-    })
-    .catch(error => {
-      console.error("GitHub API error:", error);
-    });
-}
-
+// 📝 Render Repos Function
 function renderRepos(repos) {
-  const container = document.getElementById("repo-container");
-  container.innerHTML = "";
-
+  const container = document.getElementById('repo-container');
+  container.innerHTML = '';
   repos.forEach(repo => {
     const card = document.createElement("div");
     card.classList.add("repo-card");
@@ -83,16 +69,60 @@ function renderRepos(repos) {
     const language = repo.primaryLanguage?.name;
     const stars = repo.stargazerCount ?? 0;
 
+    // Extract tags from repositoryTopics
+    const topics = repo.repositoryTopics?.nodes?.map(n => n.topic.name) || [];
+    const tags = topics.length ? topics.join(',') : "untagged";
+    card.dataset.tags = tags;
+
     card.innerHTML = `
       <h3><a href="${repo.url}" target="_blank">📁 ${repo.name}</a></h3>
       <p>${description}</p>
       ${language ? `<p>🖥️ <strong>Language:</strong> ${language}</p>` : ""}
       <p>⭐ <strong>Stars:</strong> ${stars}</p>
+      <div class="tags">Tags: ${tags}</div>
     `;
 
     container.appendChild(card);
   });
 }
+// 🚀 Fetch and Render GitHub Pinned Repos
+requestIdleCallback(() => {
+  fetchPinnedRepos();
+});
+fetch('https://api.github.com/graphql', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${GITHUB_TOKEN}`
+  },
+  body: JSON.stringify({ query: pinnedReposQuery })
+})
+  .then(response => response.json())
+  .then(data => {
+  const repos = data?.data?.viewer?.pinnedItems?.nodes;
+  if (!repos) throw new Error("Unexpected API structure");
 
-// 🚀 Load repos on page load
-fetchPinnedRepos();
+  function setupFiltering() {
+    (document.querySelectorAll('.filter-btn')).forEach(button => {
+      button.addEventListener('click', () => {
+        const tag = button.dataset.tag;
+        const cards = document.querySelectorAll('.repo-card');
+
+        cards.forEach(card => {
+          const cardTags = card.dataset.tags?.split(',') || [];
+          if (tag === 'all' || cardTags.includes(tag)) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  }
+
+  renderRepos(repos);     // ✅ Render the cards
+  setupFiltering();       // ✅ Activate filtering
+})
+.catch(error => {
+  console.error('Error fetching pinned repos:', error);
+});
