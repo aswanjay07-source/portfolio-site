@@ -89,11 +89,14 @@ function renderRepos(repos) {
 requestIdleCallback(() => {
   fetchPinnedRepos();
 });
-fetch('https://api.github.com/graphql', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-    'Authorization': `Bearer ${GITHUB_TOKEN}`
+
+function fetchPinnedRepos() {
+
+  fetch('https://api.github.com/graphql', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${GITHUB_TOKEN}`
   },
   body: JSON.stringify({ query: pinnedReposQuery })
 })
@@ -102,23 +105,26 @@ fetch('https://api.github.com/graphql', {
   const repos = data?.data?.viewer?.pinnedItems?.nodes;
   if (!repos) throw new Error("Unexpected API structure");
 
-  function setupFiltering() {
-    (document.querySelectorAll('.filter-btn')).forEach(button => {
-      button.addEventListener('click', () => {
-        const tag = button.dataset.tag;
-        const cards = document.querySelectorAll('.repo-card');
+ function setupFiltering() {
+  const filterButtons = document.querySelectorAll('.filter-btn');
 
-        cards.forEach(card => {
-          const cardTags = card.dataset.tags?.split(',') || [];
-          if (tag === 'all' || cardTags.includes(tag)) {
-            card.style.display = 'block';
-          } else {
-            card.style.display = 'none';
-          }
-        });
+  filterButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      // Toggle active class
+      filterButtons.forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+
+      // Filter logic
+      const tag = button.dataset.tag;
+      const cards = document.querySelectorAll('.repo-card');
+
+      cards.forEach(card => {
+        const cardTags = card.dataset.tags?.split(',') || [];
+        card.style.display = (tag === 'all' || cardTags.includes(tag)) ? 'block' : 'none';
       });
     });
-  }
+  });
+}
 
   renderRepos(repos);     // ✅ Render the cards
   setupFiltering();       // ✅ Activate filtering
@@ -126,3 +132,4 @@ fetch('https://api.github.com/graphql', {
 .catch(error => {
   console.error('Error fetching pinned repos:', error);
 });
+}

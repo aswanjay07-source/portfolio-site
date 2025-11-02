@@ -1,3 +1,6 @@
+## 🚀 Live Demo
+
+[🔗 View Portfolio Site](https://aswanjay07-source.github.io/portfolio-site/)
 # 🌐 Personal Portfolio Website
 
 Welcome to my personal portfolio! I'm Aswan Jay, an aspiring web developer from Kenya, passionate about building interactive and responsive websites.
@@ -58,3 +61,18 @@ SEO: Semantic HTML and meta tags included
 **Accessibility:** 96  
 **Best Practices:** 96  
 **SEO:** 100  
+
+## 🧩 Project Categories
+
+### 🔹 Frontend Projects
+- [Responsive Landing Page](https://github.com/aswanjay07-source/responsive-landing)
+
+### 🔹 Fullstack Projects
+- [Task Manager App](https://github.com/aswanjay07-source/task-manager)
+
+### 🔹 API-Based Projects
+- [Weather Dashboard](https://github.com/aswanjay07-source/weather-dashboard)
+
+![Last Commit](https://img.shields.io/github/last-commit/aswanjay07-source/portfolio-site)
+![Repo Size](https://img.shields.io/github/repo-size/aswanjay07-source/portfolio-site)
+![License](https://img.shields.io/github/license/aswanjay07-source/portfolio-site)
