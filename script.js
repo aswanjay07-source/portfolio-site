@@ -1,37 +1,36 @@
 // 🌙 Dark Mode Persistence
-window.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
   const toggleButton = document.getElementById('theme-toggle');
-  const savedTheme = localStorage.getItem('theme') || "light";
-  document.documentElement.setAttribute("data-theme", savedTheme);
-  toggleButton.textContent = savedTheme === "dark" ? "☀️" : "🌙";
+  const savedTheme = localStorage.getItem('theme') || 'light';
 
-  if (savedTheme === 'dark') {
-    document.body.classList.add('dark-mode');
-  }
+  applyTheme(savedTheme);
 
   toggleButton.addEventListener('click', () => {
-    document.body.classList.toggle('dark-mode');
-    const newTheme = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
-    document.documentElement.setAttribute("data-theme", newTheme);
-    localStorage.setItem('theme', newTheme);
-    toggleButton.textContent = newTheme === "dark" ? "☀️" : "🌙";
+    const newTheme = document.body.classList.toggle('dark-mode') ? 'dark' : 'light';
+    applyTheme(newTheme);
   });
+
+  function applyTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+    toggleButton.textContent = theme === 'dark' ? '☀️' : '🌙';
+    document.body.classList.toggle('dark-mode', theme === 'dark');
+  }
 });
 
 // ✨ Section Reveal Animation
-const sections = document.querySelectorAll("section");
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
-      entry.target.classList.add("visible");
+      entry.target.classList.add('visible');
     }
   });
 }, { threshold: 0.1 });
 
-sections.forEach(section => observer.observe(section));
+document.querySelectorAll('section').forEach(section => observer.observe(section));
 
 // 🔐 GitHub Token and Query
-const GITHUB_TOKEN = "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";
+const GITHUB_TOKEN = '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';
 const pinnedReposQuery = `
 {
   viewer {
@@ -54,30 +53,28 @@ const pinnedReposQuery = `
       }
     }
   }
-}
-`;
+}`;
 
 // 📝 Render Repos Function
 function renderRepos(repos) {
   const container = document.getElementById('repo-container');
   container.innerHTML = '';
-  repos.forEach(repo => {
-    const card = document.createElement("div");
-    card.classList.add("repo-card");
 
-    const description = repo.description || "No description provided.";
+  repos.forEach(repo => {
+    const card = document.createElement('div');
+    card.classList.add('repo-card');
+
+    const description = repo.description || 'No description provided.';
     const language = repo.primaryLanguage?.name;
     const stars = repo.stargazerCount ?? 0;
-
-    // Extract tags from repositoryTopics
     const topics = repo.repositoryTopics?.nodes?.map(n => n.topic.name) || [];
-    const tags = topics.length ? topics.join(',') : "untagged";
+    const tags = topics.length ? topics.join(',') : 'untagged';
     card.dataset.tags = tags;
 
     card.innerHTML = `
       <h3><a href="${repo.url}" target="_blank">📁 ${repo.name}</a></h3>
       <p>${description}</p>
-      ${language ? `<p>🖥️ <strong>Language:</strong> ${language}</p>` : ""}
+      ${language ? `<p>🖥️ <strong>Language:</strong> ${language}</p>` : ''}
       <p>⭐ <strong>Stars:</strong> ${stars}</p>
       <div class="tags">Tags: ${tags}</div>
     `;
@@ -85,40 +82,18 @@ function renderRepos(repos) {
     container.appendChild(card);
   });
 }
-// 🚀 Fetch and Render GitHub Pinned Repos
-requestIdleCallback(() => {
-  fetchPinnedRepos();
-});
 
-function fetchPinnedRepos() {
-
-  fetch('https://api.github.com/graphql', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${GITHUB_TOKEN}`
-  },
-  body: JSON.stringify({ query: pinnedReposQuery })
-})
-  .then(response => response.json())
-  .then(data => {
-  const repos = data?.data?.viewer?.pinnedItems?.nodes;
-  if (!repos) throw new Error("Unexpected API structure");
-
- function setupFiltering() {
+// 🧪 Setup Filtering
+function setupFiltering() {
   const filterButtons = document.querySelectorAll('.filter-btn');
 
   filterButtons.forEach(button => {
     button.addEventListener('click', () => {
-      // Toggle active class
       filterButtons.forEach(btn => btn.classList.remove('active'));
       button.classList.add('active');
 
-      // Filter logic
       const tag = button.dataset.tag;
-      const cards = document.querySelectorAll('.repo-card');
-
-      cards.forEach(card => {
+      document.querySelectorAll('.repo-card').forEach(card => {
         const cardTags = card.dataset.tags?.split(',') || [];
         card.style.display = (tag === 'all' || cardTags.includes(tag)) ? 'block' : 'none';
       });
@@ -126,10 +101,29 @@ function fetchPinnedRepos() {
   });
 }
 
-  renderRepos(repos);     // ✅ Render the cards
-  setupFiltering();       // ✅ Activate filtering
-})
-.catch(error => {
-  console.error('Error fetching pinned repos:', error);
+// 🚀 Fetch and Render GitHub Pinned Repos
+requestIdleCallback(() => {
+  fetchPinnedRepos();
 });
+
+function fetchPinnedRepos() {
+  fetch('https://api.github.com/graphql', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${GITHUB_TOKEN}`
+    },
+    body: JSON.stringify({ query: pinnedReposQuery })
+  })
+    .then(response => response.json())
+    .then(data => {
+      const repos = data?.data?.viewer?.pinnedItems?.nodes;
+      if (!repos) throw new Error('Unexpected API structure');
+
+      renderRepos(repos);
+      setupFiltering();
+    })
+    .catch(error => {
+      console.error('Error fetching pinned repos:', error);
+    });
 }
