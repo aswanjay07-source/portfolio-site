@@ -107,14 +107,7 @@ requestIdleCallback(() => {
 });
 
 function fetchPinnedRepos() {
-  fetch('https://api.github.com/graphql', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${GITHUB_TOKEN}`
-    },
-    body: JSON.stringify({ query: pinnedReposQuery })
-  })
+  fetch('/api/pinned')
     .then(response => response.json())
     .then(data => {
       const repos = data?.data?.viewer?.pinnedItems?.nodes;
