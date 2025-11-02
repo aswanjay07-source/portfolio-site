@@ -30,7 +30,7 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll('section').forEach(section => observer.observe(section));
 
 // 🔐 GitHub Token and Query
-const GITHUB_TOKEN = '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';
+const GITHUB_TOKEN = 'process.env.GITHUB_TOKEN';
 const pinnedReposQuery = `
 {
   viewer {
