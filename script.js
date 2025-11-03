@@ -107,7 +107,7 @@ requestIdleCallback(() => {
 });
 
 function fetchPinnedRepos() {
-  fetch('/api/pinned')
+  fetch('http://localhost:3000/api/pinned')
     .then(response => response.json())
     .then(data => {
       const repos = data?.data?.viewer?.pinnedItems?.nodes;
