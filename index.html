@@ -25,13 +25,18 @@
 </header>
 <!-- Filter Buttons -->
 <div id="filter-buttons">
-  <button data-filter="all">All</button>
-  <button data-filter="frontend">Frontend</button>
-  <button data-filter="fullstack">Fullstack</button>
-  <button data-filter="api">API</button>
+  <button data-filter="all">🌐 All</button>
+  <button data-filter="frontend">🎨 Frontend</button>
+  <button data-filter="fullstack">🧩 Fullstack</button>
+  <button data-filter="api">🔌 API</button>
 </div>
-
+<div id="loading-spinner" style="text-align:center; margin:2rem 0;">
+  <div class="spinner"></div>
+</div>
 <!-- Repo Cards Container -->
+ <p id="no-repos-message" style="text-align:center; display:none; font-weight:bold; color:#999;">
+  No repositories found for this filter.
+</p>
 <section id="repo-container"></section>
 <h2 style="margin-top: 2rem;">📌 Pinned GitHub Projects</h2>
 <div id="repo-container"></div>

@@ -186,11 +186,6 @@ body {
   transform: translateY(30px);
   transition: all 0.6s ease-out;
 }
-
-section.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
     footer {
   text-align: center;
   margin-top: 3rem;
@@ -235,47 +230,91 @@ section.visible {
   background-color: var(--card-bg, #f9f9f9);
   transition: box-shadow 0.3s ease;
 }
+.repo-card {
+  /* existing styles */
+}
+
+/* 🏷️ Topic Tag Styles */
+.tag {
+  display: inline-block;
+  background-color: #007acc;
+  color: white;
+  padding: 4px 8px;
+  margin: 4px 4px 0 0;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: tagFadeIn 0.5s ease forwards;
+  animation-delay: var(--delay, 0s);
+}
+
+@keyframes tagFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #ccc;
+  border-top: 4px solid #007acc;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: auto;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+#loading-spinner {
+  display: none;
+}
 #filter-bar {
   display: flex;
   gap: 10px;
   margin-bottom: 20px;
 }
+#filter-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  justify-content: center;
+}
 
-
-.filter-btn {
-  padding: 8px 16px;
+#filter-buttons button {
+  padding: 0.5rem 1rem;
   border: none;
   background-color: #eee;
+  color: #333;
+  font-weight: bold;
+  border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.filter-btn {
-  padding: 8px 16px;
-  border: 1px solid #ccc;
-  background-color: #f5f5f5;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.filter-btn:hover {
-  background-color: #e0e0e0;
+#filter-buttons button:hover {
+  background-color: #ddd;
   transform: scale(1.05);
 }
 
-.filter-btn.active {
-  background-color: #007bff;
-  color: white;
-  border-color: #007bff;
+#filter-buttons button.active {
+  background-color: #333;
+  color: #fff;
+  transform: scale(1.05);
 }
-
 .repo-card {
   border: 1px solid #ccc;
-  padding: 16px;
-  margin-bottom: 12px;
+  padding: 1rem;
+  margin: 1rem 0;
   border-radius: 8px;
-  background-color: #fff;
+  background-color: var(--card-bg, #f9f9f9);
+  transition: box-shadow 0.3s ease;
 }
-
 .repo-card h3 {
   margin-top: 0;
 }
@@ -287,7 +326,8 @@ section.visible {
 }
 
 .repo-card:hover {
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-4px);
 }
 
 .repo-card h3 a {
@@ -307,6 +347,17 @@ section.visible {
 .repo-card strong {
   color: #555;
 }
+
+.repo-card {
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.repo-card.hidden {
+  opacity: 0;
+  transform: scale(0.95);
+  pointer-events: none;
+}
+
 .repo-card {
   border: 1px solid #ccc;
   padding: 1rem;
@@ -359,9 +410,4 @@ section.visible {
     opacity: 1;
     transform: translateY(0);
   }
-}
-#repo-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1rem;
 }
