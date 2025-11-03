@@ -230,10 +230,6 @@ section.visible {
   background-color: var(--card-bg, #f9f9f9);
   transition: box-shadow 0.3s ease;
 }
-.repo-card {
-  /* existing styles */
-}
-
 /* 🏷️ Topic Tag Styles */
 .tag {
   display: inline-block;
