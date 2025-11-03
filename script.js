@@ -1,8 +1,7 @@
-// 🌙 Dark Mode Persistence
-document.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('DOMContentLoaded', () => {
+  // 🌙 Dark Mode Toggle
   const toggleButton = document.getElementById('theme-toggle');
   const savedTheme = localStorage.getItem('theme') || 'light';
-
   applyTheme(savedTheme);
 
   toggleButton.addEventListener('click', () => {
@@ -16,46 +15,67 @@ document.addEventListener('DOMContentLoaded', () => {
     toggleButton.textContent = theme === 'dark' ? '☀️' : '🌙';
     document.body.classList.toggle('dark-mode', theme === 'dark');
   }
+
+  // ✨ Section Reveal Animation
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('section').forEach(section => observer.observe(section));
+
+  // 🔁 Fetch and Render Repos
+  fetchPinnedRepos();
+
+  // 🔍 Setup Filtering
+  setupFiltering();
+
+  // ✉️ Contact Form Feedback
+  const form = document.getElementById('contact-form');
+  const feedback = document.getElementById('form-feedback');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const formData = new FormData(form);
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: formData,
+        headers: { Accept: 'application/json' }
+      });
+
+      if (res.ok) {
+        feedback.textContent = '✅ Message sent successfully!';
+        feedback.style.color = 'green';
+        form.reset();
+      } else {
+        feedback.textContent = '❌ Something went wrong. Try again.';
+        feedback.style.color = 'red';
+      }
+    } catch (err) {
+      feedback.textContent = '❌ Network error. Please check your connection.';
+      feedback.style.color = 'red';
+    }
+
+    feedback.classList.add('show');
+  });
 });
 
-// ✨ Section Reveal Animation
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-    }
-  });
-}, { threshold: 0.1 });
-
-document.querySelectorAll('section').forEach(section => observer.observe(section));
-
-// 🔐 GitHub Token and Query
-const GITHUB_TOKEN = 'process.env.GITHUB_TOKEN';
-const pinnedReposQuery = `
-{
-  viewer {
-    pinnedItems(first: 6, types: [REPOSITORY]) {
-      nodes {
-        name
-        description
-        url
-        stargazerCount
-        primaryLanguage {
-          name
-        }
-        repositoryTopics(first: 5) {
-          nodes {
-            topic {
-              name
-            }
-          }
-        }
-      }
-    }
+// 🔧 Fetch Pinned Repos from Backend
+async function fetchPinnedRepos() {
+  try {
+    const res = await fetch('http://localhost:3000/api/pinned');
+    const data = await res.json();
+    renderRepos(data.data.viewer.pinnedItems.nodes);
+  } catch (err) {
+    console.error('❌ Error fetching repos:', err);
   }
-}`;
+}
 
-// 📝 Render Repos Function
+// 📝 Render Repos with Animated Tags
 function renderRepos(repos) {
   const container = document.getElementById('repo-container');
   container.innerHTML = '';
@@ -63,14 +83,13 @@ function renderRepos(repos) {
   repos.forEach(repo => {
     const topics = repo.repositoryTopics?.nodes.map(t => t.topic.name) || [];
 
-    // 🔁 Create animated tag elements with staggered delay
     const tagElements = topics.map((t, i) => {
       return `<span class="tag" style="--delay:${i * 0.1}s">${t}</span>`;
     }).join(' ');
 
     const card = document.createElement('div');
     card.classList.add('repo-card');
-    card.setAttribute('data-topic', topics.join(' ')); // 🔥 for filtering
+    card.setAttribute('data-topic', topics.join(' '));
 
     card.innerHTML = `
       <h3><a href="${repo.url}" target="_blank">${repo.name}</a></h3>
@@ -81,7 +100,8 @@ function renderRepos(repos) {
     container.appendChild(card);
   });
 }
-// 🔍 Setup Filtering Function
+
+// 🔍 Filter Repos by Topic
 function setupFiltering() {
   const buttons = document.querySelectorAll('#filter-buttons button');
   const noReposMessage = document.getElementById('no-repos-message');
@@ -116,33 +136,3 @@ function setupFiltering() {
     });
   });
 }
-// 🚀 Fetch and Render GitHub Pinned Repos
-requestIdleCallback(() => {
-  fetchPinnedRepos();
-});
-
-async function fetchPinnedRepos() {
-  try {
-    const response = await fetch('http://localhost:3000/api/pinned');
-    if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
-
-    const data = await response.json();
-    console.log('✅ Pinned repos:', data);
-
-    // Example: render repo names to the page
-    const container = document.getElementById('repo-container');
-    container.innerHTML = ''; // Clear previous content
-
-    const repos = data.data.viewer.pinnedItems.nodes;
-    repos.forEach(repo => {
-      const div = document.createElement('div');
-      div.textContent = repo.name;
-      container.appendChild(div);
-    });
-
-  } catch (error) {
-    console.error('❌ Fetch error:', error);
-  }
-}
-
-window.addEventListener('DOMContentLoaded', fetchPinnedRepos);
