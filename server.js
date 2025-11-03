@@ -10,15 +10,15 @@ const fetch = require('node-fetch');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Middleware
-app.use(cors());
+// ✅ Middleware
+app.use(cors()); // ← Enable CORS for all routes
 app.use(express.json()); // Optional: if you need to parse JSON bodies
 
-// Routes
+// ✅ Routes
 const githubRoutes = require('./routes/github');
 app.use('/api', githubRoutes);
 
-// Direct route for /api/pinned (optional if not handled in githubRoutes)
+// Optional direct route for /api/pinned
 app.get('/api/pinned', async (req, res) => {
   try {
     const response = await fetch('https://api.github.com/graphql', {
@@ -61,7 +61,7 @@ app.get('/api/pinned', async (req, res) => {
   }
 });
 
-// Start server
+// ✅ Start server
 app.listen(PORT, () => {
-  console.log(`Server listening on port ${PORT}`);
-});
+  console.log(`🚀 Server listening on http://localhost:${PORT}`);
+}); 

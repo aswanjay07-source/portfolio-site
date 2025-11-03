@@ -121,23 +121,28 @@ requestIdleCallback(() => {
   fetchPinnedRepos();
 });
 
-function fetchPinnedRepos() {
-  const spinner = document.getElementById('loading-spinner');
-  spinner.style.display = 'block';
+async function fetchPinnedRepos() {
+  try {
+    const response = await fetch('http://localhost:3000/api/pinned');
+    if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
 
-  fetch('http://localhost:3000/api/pinned')
-    .then(response => response.json())
-    .then(data => {
-      const repos = data?.data?.viewer?.pinnedItems?.nodes;
-      if (!repos) throw new Error('Unexpected API structure');
+    const data = await response.json();
+    console.log('✅ Pinned repos:', data);
 
-      renderRepos(repos);
-      setupFiltering();
-    })
-    .catch(error => {
-      console.error('Error fetching pinned repos:', error);
-    })
-    .finally(() => {
-      spinner.style.display = 'none';
+    // Example: render repo names to the page
+    const container = document.getElementById('repo-container');
+    container.innerHTML = ''; // Clear previous content
+
+    const repos = data.data.viewer.pinnedItems.nodes;
+    repos.forEach(repo => {
+      const div = document.createElement('div');
+      div.textContent = repo.name;
+      container.appendChild(div);
     });
+
+  } catch (error) {
+    console.error('❌ Fetch error:', error);
+  }
 }
+
+window.addEventListener('DOMContentLoaded', fetchPinnedRepos);
