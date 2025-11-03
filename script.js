@@ -61,41 +61,34 @@ function renderRepos(repos) {
   container.innerHTML = '';
 
   repos.forEach(repo => {
+    const topics = repo.repositoryTopics?.nodes.map(t => t.topic.name) || [];
+
     const card = document.createElement('div');
     card.classList.add('repo-card');
-
-    const description = repo.description || 'No description provided.';
-    const language = repo.primaryLanguage?.name;
-    const stars = repo.stargazerCount ?? 0;
-    const topics = repo.repositoryTopics?.nodes?.map(n => n.topic.name) || [];
-    const tags = topics.length ? topics.join(',') : 'untagged';
-    card.dataset.tags = tags;
+    card.setAttribute('data-topic', topics.join(' ')); // 🔥 for filtering
 
     card.innerHTML = `
-      <h3><a href="${repo.url}" target="_blank">📁 ${repo.name}</a></h3>
-      <p>${description}</p>
-      ${language ? `<p>🖥️ <strong>Language:</strong> ${language}</p>` : ''}
-      <p>⭐ <strong>Stars:</strong> ${stars}</p>
-      <div class="tags">Tags: ${tags}</div>
+      <h3><a href="${repo.url}" target="_blank">${repo.name}</a></h3>
+      <p>${repo.description || 'No description provided.'}</p>
+      <div class="topics">${topics.map(t => `<span class="tag">${t}</span>`).join(' ')}</div>
     `;
 
     container.appendChild(card);
   });
 }
-
-// 🧪 Setup Filtering
+// 🔍 Setup Filtering Function
 function setupFiltering() {
-  const filterButtons = document.querySelectorAll('.filter-btn');
+  const buttons = document.querySelectorAll('#filter-buttons button');
 
-  filterButtons.forEach(button => {
+  buttons.forEach(button => {
     button.addEventListener('click', () => {
-      filterButtons.forEach(btn => btn.classList.remove('active'));
-      button.classList.add('active');
+      const filter = button.getAttribute('data-filter');
+      const cards = document.querySelectorAll('.repo-card');
 
-      const tag = button.dataset.tag;
-      document.querySelectorAll('.repo-card').forEach(card => {
-        const cardTags = card.dataset.tags?.split(',') || [];
-        card.style.display = (tag === 'all' || cardTags.includes(tag)) ? 'block' : 'none';
+      cards.forEach(card => {
+        const topics = card.getAttribute('data-topic');
+        const match = filter === 'all' || topics.includes(filter);
+        card.style.display = match ? 'block' : 'none';
       });
     });
   });
