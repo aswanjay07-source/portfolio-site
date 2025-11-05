@@ -1,8 +1,11 @@
-// vite.config.js
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
 export default defineConfig({
-  plugins: [react()],
-  base: './', // 👈 this fixes broken asset paths
+  base: './',
+  server: {
+    port: 5173,         // or 5500 if you prefer
+    open: true          // 👈 this opens your default browser automatically
+  },
+  plugins: [react()]
 })
