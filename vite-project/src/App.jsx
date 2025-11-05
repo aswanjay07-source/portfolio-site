@@ -1,7 +1,10 @@
+import React from 'react';
+import Projects from './components/Projects';
 import './App.css'
 function App() {
   return (
     <div className="app-container">
+      <Projects />
       <header>
         <h1>Aswan Jay</h1>
         <p className="tagline">Fullstack Web Developer • UI/UX Enthusiast • API Integrator</p>
@@ -14,13 +17,13 @@ function App() {
         </p>
       </section>
 
-      <section className="projects">
-        <h2>Featured Projects</h2>
-        <ul>
-          <li><a href="https://github.com/aswanjay07" target="_blank">GitHub Portfolio</a></li>
-          <li><a href="https://cozy-tartufo-75ec8d.netlify.app" target="_blank">Live Site</a></li>
-        </ul>
-      </section>
+      <section className="quick-links">
+  <h2>Quick Links</h2>
+  <ul>
+    <li><a href="https://github.com/aswanjay07" target="_blank">GitHub Profile</a></li>
+    <li><a href="https://cozy-tartufo-75ec8d.netlify.app" target="_blank">Live Portfolio Site</a></li>
+  </ul>
+</section>
 
       <section className="contact">
         <h2>Contact</h2>
