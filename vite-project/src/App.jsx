@@ -33,6 +33,10 @@ function App() {
       <footer>
         <p>© {new Date().getFullYear()} Aswan Jay. Built with Vite + React.</p>
       </footer>
+
+    <button className="scroll-top" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+  ⬆️ Top
+</button>
     </div>
   )
 }
