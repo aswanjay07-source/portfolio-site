@@ -1,34 +1,37 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
+    <div className="app-container">
+      <header>
+        <h1>Aswan Jay</h1>
+        <p className="tagline">Fullstack Web Developer • UI/UX Enthusiast • API Integrator</p>
+      </header>
+
+      <section className="bio">
+        <h2>About Me</h2>
         <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
+          I'm Aswan Jay, an aspiring fullstack developer passionate about building secure, responsive, and visually engaging web experiences. I specialize in API integrations, animated UI/UX, and professional documentation. My toolkit includes VS Code, Postman, GitHub Desktop, and a deep love for semantic HTML and clean design.
         </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+      </section>
+
+      <section className="projects">
+        <h2>Featured Projects</h2>
+        <ul>
+          <li><a href="https://github.com/aswanjay07" target="_blank">GitHub Portfolio</a></li>
+          <li><a href="https://cozy-tartufo-75ec8d.netlify.app" target="_blank">Live Site</a></li>
+        </ul>
+      </section>
+
+      <section className="contact">
+        <h2>Contact</h2>
+        <p>Reach me via <a href="mailto:aswanjay07@gmail.com">aswanjay07@gmail.com</a> or use the contact form on my site.</p>
+      </section>
+
+      <footer>
+        <p>© {new Date().getFullYear()} Aswan Jay. Built with Vite + React.</p>
+      </footer>
+    </div>
   )
 }
 
