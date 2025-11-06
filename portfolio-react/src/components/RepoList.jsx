@@ -6,7 +6,7 @@ function RepoList({ filter }) {
   useEffect(() => {
     async function fetchPinnedRepos() {
       try {
-        const res = await fetch('http://localhost:3000/api/pinned');
+        const res = await fetch('/.netlify/functions/pinned');
         const data = await res.json();
         setRepos(data.data.viewer.pinnedItems.nodes);
       } catch (err) {
@@ -26,7 +26,7 @@ function RepoList({ filter }) {
       {filtered.length === 0 ? (
         <p id="no-repos-message">No repos found.</p>
       ) : (
-        filtered.map((repo, i) => (
+        filtered.map((repo) => (
           <div key={repo.name} className="repo-card" data-topic={repo.repositoryTopics?.nodes.map(t => t.topic.name).join(' ')}>
             <h3><a href={repo.url} target="_blank">{repo.name}</a></h3>
             <p>{repo.description || 'No description provided.'}</p>
