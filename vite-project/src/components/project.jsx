@@ -37,8 +37,9 @@ const Projects = () => {
       {/* ✅ Display filtered repos */}
       <div className="repo-list">
         {filteredRepos && filteredRepos.length > 0 ? (
-          filteredRepos.map((repo) => (
-            <div key={repo.id} className="repo-card">
+          filteredRepos.map((repo, index) => (
+            <div key={repo.id} className="repo-card" style={{ animationDelay: `${index * 100}ms` }}>
+
               <h3>{repo.name}</h3>
               <p className="repo-language">{repo.language || 'Unknown'}</p>
               <p>{repo.description || 'No description provided.'}</p>
