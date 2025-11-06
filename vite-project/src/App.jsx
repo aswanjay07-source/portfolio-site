@@ -1,10 +1,10 @@
 import React from 'react';
 import Projects from './components/Projects';
-import './App.css'
+import './App.css';
+
 function App() {
   return (
-    <div className="app-container">
-      <Projects />
+    <div className="app-container" style={{ backgroundColor: '#ffffff', color: '#000000' }}>
       <header>
         <h1>Aswan Jay</h1>
         <p className="tagline">Fullstack Web Developer • UI/UX Enthusiast • API Integrator</p>
@@ -17,28 +17,36 @@ function App() {
         </p>
       </section>
 
+      <Projects />
+
       <section className="quick-links">
-  <h2>Quick Links</h2>
-  <ul>
-    <li><a href="https://github.com/aswanjay07" target="_blank">GitHub Profile</a></li>
-    <li><a href="https://cozy-tartufo-75ec8d.netlify.app" target="_blank">Live Portfolio Site</a></li>
-  </ul>
-</section>
+        <h2>Quick Links</h2>
+        <ul>
+          <li><a href="https://github.com/aswanjay07" target="_blank" rel="noopener noreferrer">GitHub Profile</a></li>
+          <li><a href="https://cozy-tartufo-75ec8d.netlify.app" target="_blank" rel="noopener noreferrer">Live Portfolio Site</a></li>
+        </ul>
+      </section>
 
       <section className="contact">
         <h2>Contact</h2>
-        <p>Reach me via <a href="mailto:aswanjay07@gmail.com">aswanjay07@gmail.com</a> or use the contact form on my site.</p>
+        <p>
+          Reach me via <a href="mailto:aswanjay07@gmail.com">aswanjay07@gmail.com</a> or use the contact form on my site.
+        </p>
       </section>
 
       <footer>
         <p>© {new Date().getFullYear()} Aswan Jay. Built with Vite + React.</p>
       </footer>
 
-    <button className="scroll-top" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-  ⬆️ Top
-</button>
+      <button
+        className="scroll-top"
+        aria-label="Scroll to top"
+        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+      >
+        ⬆️ Top
+      </button>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
