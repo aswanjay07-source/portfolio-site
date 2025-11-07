@@ -19,3 +19,57 @@ If you are developing a production application, we recommend using TypeScript wi
 ✅ `.gitignore` configured  
 ✅ No `node_modules` or build artifacts committed  
 ✅ Clean commit history
+
+# 🚀 Aswan Jay — Fullstack Web Developer Portfolio
+
+Welcome to my portfolio! I'm Aswan Jay, a fullstack web developer focused on building fast, secure, and visually engaging web applications. This repo powers my live portfolio site, showcasing featured projects, frontend experiments, backend integrations, and fullstack builds.
+
+## 🧠 Tech Stack
+
+- **Frontend**: React, Vite, CSS Modules, Semantic HTML
+- **Backend**: Netlify Functions, GraphQL, REST APIs
+- **Deployment**: Netlify, GitHub Pages
+- **Tooling**: VS Code, Postman, GitHub Desktop, Lighthouse
+
+## 📁 Repo Grouping Logic
+
+Projects are grouped by GitHub topics:
+
+| Category | Topic Tag |
+|----------|-----------|
+| Featured Projects | `featured` |
+| Frontend UI/UX | `frontend` |
+| Backend/API | `backend` |
+| Fullstack Builds | `fullstack` |
+| Sandbox Experiments | `sandbox` |
+
+To update a repo’s category, go to GitHub → Settings → Topics → add the relevant tag.
+
+## 🖼️ Screenshots
+
+| Portfolio Homepage | Grouped Projects |
+|--------------------|------------------|
+| ![Homepage Screenshot](./screenshots/homepage.png) | ![Grouped Repos](./screenshots/grouped-repos.png) |
+
+> Add your screenshots to a `/screenshots` folder in the root of your repo.
+
+## 🧪 Features
+
+- 🔍 Dynamic GitHub repo cards via API
+- 🎨 Animated tags, filter buttons, and fade-in effects
+- ⚡️ Lighthouse-optimized performance
+- 🔐 Secure backend with environment variables
+- 📬 Formspree contact form integration
+
+## 📦 Installation
+
+```bash
+git clone https://github.com/aswanjay/portfolio.git
+cd portfolio
+npm install
+npm run dev
+
+## 🌐 Live Demo
+
+👉 [View the live site](https://classy-madeleine-5df43f.netlify.app)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/5c8f3c4b-5c8f-4b8f-8c8f-5c8f3c4b8c8f/deploy-status)](https://app.netlify.com/sites/classy-madeleine-5df43f/deploys)
