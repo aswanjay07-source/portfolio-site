@@ -1,6 +1,6 @@
 import fetch from 'node-fetch';
 
-export async function handler(event, context) {
+export async function handler() {
   const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 
   const query = `

@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import useGithubRepos from '../hooks/UseGithubRepos';
+import RepoList from './RepoList'; // Make sure this component exists
 
 const Projects = () => {
   const { repos, loading, error } = useGithubRepos('aswanjay');
-  const [filter, setFilter] = useState('all');
   const [showButton, setShowButton] = useState(false);
 
-  const filteredRepos = repos.filter((repo) => {
-    if (filter === 'all') return true;
-    return repo.language === filter;
-  });
+  const groupedRepos = {
+    featured: repos.filter(repo => repo.topics?.includes('featured')),
+    frontend: repos.filter(repo => repo.topics?.includes('frontend')),
+    backend: repos.filter(repo => repo.topics?.includes('backend')),
+    fullstack: repos.filter(repo => repo.topics?.includes('fullstack')),
+    sandbox: repos.filter(repo => repo.topics?.includes('sandbox')),
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,51 +26,26 @@ const Projects = () => {
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <section>
+    <section className="projects">
       <h2>My GitHub Projects</h2>
 
-      {/* ✅ Add filtering buttons here */}
-      <div className="filter-buttons">
-        <button onClick={() => setFilter('all')}>🌐 All</button>
-        <button onClick={() => setFilter('JavaScript')}>🟨 JavaScript</button>
-        <button onClick={() => setFilter('Python')}>🐍 Python</button>
-        <button onClick={() => setFilter('CSS')}>🎨 CSS</button>
-      </div>
+      {/* ✅ Grouped Repo Sections */}
+      <h3>🌟 Featured Projects</h3>
+      <RepoList repos={groupedRepos.featured} />
 
-      {/* ✅ Display filtered repos */}
-      <div className="repo-list">
-        {filteredRepos && filteredRepos.length > 0 ? (
-          filteredRepos.map((repo, index) => (
-            <div key={repo.id} className="repo-card" style={{ animationDelay: `${index * 100}ms` }}>
+      <h3>🎨 Frontend UI/UX</h3>
+      <RepoList repos={groupedRepos.frontend} />
 
-              <h3>{repo.name}</h3>
-              <p className="repo-language">{repo.language || 'Unknown'}</p>
-              <p>{repo.description || 'No description provided.'}</p>
-              <a href={repo.html_url} target="_blank" rel="noopener noreferrer">
-                View on GitHub
-              </a>
-              {repo.tags && (
-                <div className="repo-tags">
-                  {repo.tags.map((tag, index) => (
-                    <span
-                      key={tag}
-                      className="tag"
-                      style={{ animationDelay: `${index * 100}ms` }}
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              )}
-            </div>
-          ))
-        ) : (
-          <p className="text-center text-gray-500 mt-8 animate-fadeIn">
-            🔍 No repos found matching your filters.
-          </p>
-        )}
-      </div>
+      <h3>🔧 Backend/API</h3>
+      <RepoList repos={groupedRepos.backend} />
 
+      <h3>🧩 Fullstack Builds</h3>
+      <RepoList repos={groupedRepos.fullstack} />
+
+      <h3>🧪 Sandbox Experiments</h3>
+      <RepoList repos={groupedRepos.sandbox} />
+
+      {/* ✅ Scroll to Top Button */}
       {showButton && (
         <button
           className="scroll-to-top"
@@ -81,4 +59,3 @@ const Projects = () => {
 };
 
 export default Projects;
-
