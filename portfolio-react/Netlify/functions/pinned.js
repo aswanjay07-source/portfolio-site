@@ -1,20 +1,23 @@
-const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
-import process from 'process'; // Import process module
+import fetch from 'node-fetch';
 
-export const handler = async function () {
+export async function handler(event, context) {
   const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 
   const query = `
-    {
+    query {
       viewer {
         pinnedItems(first: 6, types: [REPOSITORY]) {
           nodes {
-            name
-            description
-            url
-            languages(first: 3) {
-              nodes {
-                name
+            ... on Repository {
+              name
+              description
+              url
+              stargazerCount
+              forkCount
+              languages(first: 3) {
+                nodes {
+                  name
+                }
               }
             }
           }
@@ -40,10 +43,10 @@ export const handler = async function () {
       body: JSON.stringify(data),
     };
   } catch (error) {
-    console.error('❌ GitHub GraphQL error:', error);
+    console.error('❌ GitHub API error:', error);
     return {
       statusCode: 500,
       body: JSON.stringify({ error: 'Failed to fetch pinned repos' }),
     };
   }
-};
+}
