@@ -72,4 +72,27 @@ npm run dev
 ## 🌐 Live Demo
 
 👉 [View the live site](https://classy-madeleine-5df43f.netlify.app)
+
+---
+
+### 🧠 Optional Enhancements
+
+- Add a **Lighthouse badge** once you run your audit
+- Add a **“Built With”** section if you want to highlight tools like GitHub API, Formspree, etc.
+- Add a **“Contributing”** section if you plan to open source or invite feedback
+
+---
+
+### ✅ Final Commit Message
+
+
+## 📈 Deployment Status
 [![Netlify Status](https://api.netlify.com/api/v1/badges/5c8f3c4b-5c8f-4b8f-8c8f-5c8f3c4b8c8f/deploy-status)](https://app.netlify.com/sites/classy-madeleine-5df43f/deploys)
+
+## 📦 Installation
+
+```bash
+git clone https://github.com/aswanjay/portfolio.git
+cd portfolio
+npm install
+npm run dev
