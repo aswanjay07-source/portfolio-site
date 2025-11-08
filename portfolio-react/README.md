@@ -24,6 +24,12 @@ If you are developing a production application, we recommend using TypeScript wi
 
 Welcome to my portfolio! I'm Aswan Jay, a fullstack web developer focused on building fast, secure, and visually engaging web applications. This repo powers my live portfolio site, showcasing featured projects, frontend experiments, backend integrations, and fullstack builds.
 
+![GitHub last commit](https://img.shields.io/github/last-commit/aswanjay/portfolio)
+![GitHub repo size](https://img.shields.io/github/repo-size/aswanjay/portfolio)
+![GitHub issues](https://img.shields.io/github/issues/aswanjay/portfolio)
+![GitHub forks](https://img.shields.io/github/forks/aswanjay/portfolio?style=social)
+![GitHub stars](https://img.shields.io/github/stars/aswanjay/portfolio?style=social)
+
 ## 🧠 Tech Stack
 
 - **Frontend**: React, Vite, CSS Modules, Semantic HTML
@@ -52,6 +58,17 @@ To update a repo’s category, go to GitHub → Settings → Topics → add the 
 | ![Homepage Screenshot](./screenshots/homepage.png) | ![Grouped Repos](./screenshots/grouped-repos.png) |
 
 > Add your screenshots to a `/screenshots` folder in the root of your repo.
+
+## 📈 Lighthouse Audit
+
+| Category        | Score |
+|----------------|-------|
+| Performance     | 76%   |
+| Accessibility   | 96%   |
+| Best Practices  | 100%  |
+| SEO             | 91%   |
+
+> ⚠️ Note: Chrome extensions affected this run. For more accurate results, re-audit in incognito mode.
 
 ## 🧪 Features
 
