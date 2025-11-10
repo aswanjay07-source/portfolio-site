@@ -15,6 +15,7 @@ The React Compiler is not enabled on this template because of its impact on dev 
 
 If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
 
+
 ## Repo Hygiene
 ✅ `.gitignore` configured  
 ✅ No `node_modules` or build artifacts committed  
@@ -50,6 +51,15 @@ Projects are grouped by GitHub topics:
 | Sandbox Experiments | `sandbox` |
 
 To update a repo’s category, go to GitHub → Settings → Topics → add the relevant tag.
+
+
+## Screenshots
+
+### Repo Cards
+![Repo Cards](./src/assets/screenshots/repo-cards.png)
+
+### Contact Form
+![Contact Form](./src/assets/screenshots/contact-form.png)
 
 ## 🖼️ Screenshots
 
@@ -113,3 +123,12 @@ git clone https://github.com/aswanjay/portfolio.git
 cd portfolio
 npm install
 npm run dev
+
+## 🛠️ Built With
+- GitHub GraphQL API
+- Formspree
+- Netlify Functions
+- React + Vite
+
+## 🤝 Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you’d like to change.y
