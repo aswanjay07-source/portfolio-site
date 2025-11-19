@@ -1,0 +1,15 @@
+{
+  "ci": {
+    "collect": {
+      "url": ["https://dashing-liger-e55ab0.netlify.app/"],
+      "numberOfRuns": 1
+    },
+    "upload": {
+      "target": "filesystem",
+      "outputDir": "./lhci-results"
+    },
+    "assert": {
+      "preset": "lighthouse:recommended"
+    }
+  }
+}

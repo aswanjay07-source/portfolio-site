@@ -1,16 +1,51 @@
-# React + Vite
+# 🚀 Aswan Jay's Vite Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A fast, responsive, and authentically branded portfolio built with Vite + React. Showcasing fullstack development, Git mastery, and creative UI/UX — powered by automated performance audits and clean CI/CD workflows.
 
-Currently, two official plugins are available:
+## 🔗 Live Site
+[Visit Portfolio](https://dashing-liger-e55ab0.netlify.app)
+## 📸 Screenshots
+| Home Page | Projects Section | Contact Form |
+|-----------|------------------|--------------|
+| ![Home](./screenshots/home.png) | ![Projects](./screenshots/projects.png) | ![Contact](./screenshots/contact.png) |
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🧠 Features
+- Responsive design with semantic HTML and animated UI elements
+- GitHub API integration for live repo stats
+- Formspree-powered contact form with validation and feedback
+- Lighthouse CI workflow for automated performance audits
+- Clean repo hygiene with structured file placement and commit history
+- Authentic profile image and custom banner reflecting real identity
 
-## React Compiler
+## 🛠️ Tech Stack
+- Vite + React
+- GitHub Actions (CI/CD)
+- Formspree
+- Netlify
+- Postman, VS Code, GitHub Desktop
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🚀 Lighthouse Audit
 
-## Expanding the ESLint configuration
+![Performance](https://img.shields.io/badge/Performance-73-yellow)
+![Accessibility](https://img.shields.io/badge/Accessibility-96-brightgreen)
+![Best Practices](https://img.shields.io/badge/Best%20Practices-100-brightgreen)
+![SEO](https://img.shields.io/badge/SEO-91-green)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+> Scores generated from [Lighthouse CI](https://github.com/GoogleChrome/lighthouse-ci) on [dashing-liger-e55ab0.netlify.app](https://dashing-liger-e55ab0.netlify.app)
+
+## 👤 About Me
+I'm Aswan Jay, an aspiring fullstack web developer based in Nairobi, Kenya. I specialize in advanced API integrations, creative UI/UX, and professional branding. I thrive on clean workflows, automated audits, and authentic self-representation in every project.
+
+## 📂 Repo Hygiene
+- Meticulous file placement and semantic structure
+- Clean commit history with meaningful messages
+- CI/CD automation for seamless Netlify deployment
+- README.md structured for clarity, screenshots, and badge integration
+
+## 🏁 Project Status
+✅ UI/UX complete  
+✅ Live deployment confirmed  
+✅ Branding elements integrated  
+✅ Lighthouse CI configured  
+🔄 Badge automation in progress  
+🔄 README polish finalized  
