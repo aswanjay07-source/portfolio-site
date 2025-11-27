@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import useGithubRepos from '../hooks/UseGithubRepos';
-import RepoList from './RepoList'; // Make sure this component exists
+import useGithubRepos from '../hooks/useGithubRepos';
+import RepoList from './RepoList';
 
 const Projects = () => {
   const { repos, loading, error } = useGithubRepos('aswanjay');
@@ -29,7 +29,6 @@ const Projects = () => {
     <section className="projects">
       <h2>My GitHub Projects</h2>
 
-      {/* ✅ Grouped Repo Sections */}
       <h3>🌟 Featured Projects</h3>
       <RepoList repos={groupedRepos.featured} />
 
@@ -45,7 +44,6 @@ const Projects = () => {
       <h3>🧪 Sandbox Experiments</h3>
       <RepoList repos={groupedRepos.sandbox} />
 
-      {/* ✅ Scroll to Top Button */}
       {showButton && (
         <button
           className="scroll-to-top"

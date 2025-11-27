@@ -1,52 +1,38 @@
 import React from 'react';
-import Projects from './components/Projects';
+import Projects from './components/projects';
 import './App.css';
 
 function App() {
   return (
-    <div className="app-container" style={{ backgroundColor: '#ffffff', color: '#000000' }}>
+    <main>
       <header>
         <h1>Aswan Jay</h1>
-        <p className="tagline">Fullstack Web Developer • UI/UX Enthusiast • API Integrator</p>
+        <p>Fullstack Web Developer • UI/UX Enthusiast • API Integrator</p>
       </header>
-
-      <section className="bio">
-        <h2>About Me</h2>
-        <p>
-          I'm Aswan Jay, an aspiring fullstack developer passionate about building secure, responsive, and visually engaging web experiences. I specialize in API integrations, animated UI/UX, and professional documentation. My toolkit includes VS Code, Postman, GitHub Desktop, and a deep love for semantic HTML and clean design.
-        </p>
-      </section>
 
       <Projects />
 
-      <section className="quick-links">
-        <h2>Quick Links</h2>
-        <ul>
-          <li><a href="https://github.com/aswanjay07" target="_blank" rel="noopener noreferrer">GitHub Profile</a></li>
-          <li><a href="https://cozy-tartufo-75ec8d.netlify.app" target="_blank" rel="noopener noreferrer">Live Portfolio Site</a></li>
-        </ul>
-      </section>
-
-      <section className="contact">
-        <h2>Contact</h2>
-        <p>
-          Reach me via <a href="mailto:aswanjay07@gmail.com">aswanjay07@gmail.com</a> or use the contact form on my site.
-        </p>
-      </section>
-
       <footer>
-        <p>© {new Date().getFullYear()} Aswan Jay. Built with Vite + React.</p>
+        <h2>About Me</h2>
+        <p>
+          I'm Aswan Jay, an aspiring fullstack developer passionate about building secure,
+          responsive, and visually engaging web experiences. I specialize in API integrations,
+          animated UI/UX, and professional documentation.
+        </p>
+        <p>
+          Reach me via <a href="mailto:aswanjay07@gmail.com">aswanjay07@gmail.com</a> or use the
+          contact form on my site.
+        </p>
+        <p>
+          <a href="https://github.com/aswanjay">GitHub Profile</a> •{' '}
+          <a href="https://dashing-liger-e55ab0.netlify.app">Live Portfolio Site</a>
+        </p>
+        <p>© 2025 Aswan Jay. Built with Vite + React.</p>
+        <p>⬆️ <a href="#">Top</a></p>
       </footer>
-
-      <button
-        className="scroll-top"
-        aria-label="Scroll to top"
-        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-      >
-        ⬆️ Top
-      </button>
-    </div>
+    </main>
   );
 }
 
 export default App;
+
